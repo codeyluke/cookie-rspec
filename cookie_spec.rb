@@ -23,16 +23,19 @@ describe Cookie do
   end
 
   describe "#type" do
-    it "returns the type of the cookie"
-
+    it "returns the type of the cookie" do 
+      expect(cookie.type).to eq("peanut butter")
+    end
   end
 
   describe "#bake!" do
-    it "requires an integer time argument"
+    it "requires an integer time argument" do 
+      expect{cookie.bake!("abc")}.to raise_error(TypeError)
+    end
 
-
-    it "returns the cookie object"
-
+    it "returns the cookie object" do 
+      expect(cookie).to be_kind_of(Cookie)
+    end 
 
     it "changes the status of the cookie when given enough time" do
       expect { cookie.bake!(10) }.to change(cookie, :status)
@@ -40,12 +43,16 @@ describe Cookie do
   end
 
   describe "#status" do
-    it "returns the cookie's current status"
+    it "returns the cookie's current status" do 
+      expect( cookie.status ).to eq(:doughy)
+      expect( cookie.status ).to_not eq("asd")
+    end
 
 
     context "when unbaked" do
-      it "is `:doughy`"
-
+      it "is `:doughy`" do
+        expect( cookie.bake!(0).status ).to eq(:doughy)
+      end
     end
 
     context "when baked for less than 7 minutes" do
