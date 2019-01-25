@@ -56,23 +56,27 @@ describe Cookie do
     end
 
     context "when baked for less than 7 minutes" do
-      it "is `:doughy`"
-
+      it "is `:doughy`" do 
+        expect( cookie.bake!(5).status ).to eq(:doughy)
+      end
     end
 
     context "when baked for at least 7 but less than 10 minutes" do
-      it "is `:almost_ready`"
-
+      it "is `:almost_ready`" do 
+        expect( cookie.bake!(8).status ).to eq(:almost_ready)
+      end
     end
 
     context "when baked for at least 10 but less than 12 minutes" do
-      it "is `:ready`"
-
+      it "is `:ready`" do 
+        expect( cookie.bake!(11).status ).to eq(:ready)
+      end
     end
 
     context "when baked for at least 12 minutes" do
-      it "is `:burned`"
-
+      it "is `:burned`" do 
+        expect( cookie.bake!(13).status ).to eq(:burned) 
+      end
     end
   end
 end
